@@ -2,10 +2,8 @@ import { useState, useEffect } from 'react'
 import { decode } from 'html-entities'
 import { nanoid } from "nanoid"
 import { ThreeDots  } from 'react-loader-spinner' //loading animation 
-
-
-
 import AllAnswers from './AllAnswers'
+
 export default function Quiz() {
     const [question, setQuestion] = useState([])
     const [noClickedAnswerWarning, setNoClickedAnswerWarning] = useState(0) //  reset animations for not clicked answers
@@ -13,8 +11,6 @@ export default function Quiz() {
     const [correctAnswers, setCorrectAnswers] = useState(0)
     const [gameOver, setGameOver] = useState(false)
     const [newGame, setNewGame] = useState(false)
-
-    const questionsQty = 5
     
     function generateQuestionsParameters(answer, correctAnswer) {
         return {
@@ -26,7 +22,7 @@ export default function Quiz() {
     }
 
     useEffect(()=>{
-        fetch(`https://opentdb.com/api.php?amount=${questionsQty}`)
+        fetch(`https://opentdb.com/api.php?amount=5`)
             .then(res=>res.json())
             .then(data=>{
                 const newArray= data.results.map(quest=>{
